@@ -1,5 +1,6 @@
 # Basic-Motion-Sensor-Setup-Motion-Alarm-with-Buzzer-and-LED
 Basic motion sensing setup using Arduino, PIR sensor, LEDs, and push button for interaction &amp; Motion-triggered alarm system with Arduino, PIR sensor, piezo buzzer, and LED alert.
+// first pic
 # Basic Motion Sensor Setup using Arduino
 
 #Overview  
@@ -28,7 +29,7 @@ This setup can serve as the foundation for home automation systems, entry detect
 
 #Next Steps  
 Future enhancements may include integrating a buzzer, adding real-time feedback via serial communication, or expanding to IoT platforms for remote motion alerts.
- \\ second pic
+ // second pic
  # Motion-Activated Alarm using Arduino and PIR Sensor
 
 #Overview  
