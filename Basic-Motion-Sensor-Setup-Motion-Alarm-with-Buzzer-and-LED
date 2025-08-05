@@ -1,0 +1,70 @@
+//first pic
+const int buttonPin = 2;       
+const int sensorPin = 3;
+const int latchPin = 5;        
+const int indicatorLED = 13;   
+unsigned long lastDetectedTime = 0;
+const unsigned long timeout = 30000; 
+bool systemOn = false;
+
+void setup() {
+  pinMode(buttonPin, INPUT_PULLUP);  
+  pinMode(sensorPin, INPUT);         
+  pinMode(latchPin, OUTPUT);          
+  pinMode(indicatorLED, OUTPUT);      
+
+  digitalWrite(latchPin, LOW);       
+  digitalWrite(indicatorLED, LOW);
+}
+
+void loop() {
+ 
+  if (digitalRead(buttonPin) == LOW && !systemOn) {
+    systemOn = true;
+    digitalWrite(latchPin, HIGH);    
+    digitalWrite(indicatorLED, HIGH); 
+    lastDetectedTime = millis();      
+    delay(300);
+  }
+
+ 
+  if (systemOn) {
+    if (digitalRead(sensorPin) == HIGH) {
+      lastDetectedTime = millis(); 
+    }
+
+    
+    if (millis() - lastDetectedTime > timeout) {
+      digitalWrite(latchPin, LOW);
+      digitalWrite(indicatorLED, LOW); 
+      systemOn = false;
+    }
+  }
+}
+//second pic 
+int pirPin = 2;       
+int buzzerPin = 8;   
+int ledPin = 13;      
+
+void setup() {
+  pinMode(pirPin, INPUT);
+  pinMode(buzzerPin, OUTPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int motionDetected = digitalRead(pirPin);
+
+  if (motionDetected == HIGH) {
+    Serial.println("🚨 حركة مكتشفة!");
+    digitalWrite(buzzerPin, HIGH);
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(buzzerPin, LOW);
+    digitalWrite(ledPin, LOW);
+  }
+
+  delay(200); 
+}
+
